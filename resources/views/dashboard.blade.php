@@ -12,7 +12,7 @@
                     @foreach($purchasedCourses as $purchasedCourse)
                         <li>
                             <p>{{ $purchasedCourse->title }}</p>
-                            <a href="{{ route('page.course-videos', $purchasedCourse) }}">Watch videos</a>
+                            <a href="{{ route('pages.course-videos', $purchasedCourse) }}">Watch videos</a>
                         </li>
                     @endforeach
                 </ul>
