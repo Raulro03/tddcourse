@@ -18,7 +18,9 @@ it('cannot be accessed by guest', function () {
 
 it('includes a video player', function () {
     // Arrange
-    $course = Course::factory()->create();
+    $course = Course::factory()
+                    ->has(Video::factory())
+                    ->create();
 
     // Act & Assert
     loginAsUser();
@@ -38,7 +40,7 @@ it('shows first course video by default', function () {
     loginAsUser();
     get(route('pages.course-videos', $course))
         ->assertOk()
-        ->assertSeeText('First Video');
+        ->assertSee('First Video');
 });
 
 it('shows provided course video', function () {
