@@ -8,19 +8,16 @@ use App\Models\Video;
 it('shows details for given video', function () {
     // Arrange
     $course = Course::factory()
-        ->has(Video::factory()->state([
-            'title' => 'Video title',
-            'description' => 'Video description',
-            'duration' => 10
-        ]))
+        ->has(Video::factory())
         ->create();
 
     // Act & Assert
+    $video = $course->videos->first();
     Livewire::test(VideoPlayer::class, ['video' => $course->videos->first()])
         ->assertSeeText([
-            'Video title',
-            'Video description',
-            '10min'
+            $video->title,
+            $video->description,
+            "({$video->duration_in_min}min)"
         ]);
 
 });
@@ -28,13 +25,12 @@ it('shows details for given video', function () {
 it('shows given video', function () {
     // Arrange
     $course = Course::factory()
-        ->has(Video::factory()->state([
-            'vimeo_id' => 'vimeo-id',
-        ]))
+        ->has(Video::factory())
         ->create();
 
     // Act & Assert
-    Livewire::test(VideoPlayer::class, ['video' => $course->videos->first()])
-        ->assertSee('<iframe src="https://player.vimeo.com/video/vimeo-id"', false);
+    $video = $course->videos->first();
+    Livewire::test(VideoPlayer::class, ['video' => $video])
+        ->assertSeeHtml('<iframe src="https://player.vimeo.com/video/' . $video->vimeo_id . '"');
 
 });
