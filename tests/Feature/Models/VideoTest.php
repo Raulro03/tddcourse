@@ -1,7 +1,18 @@
 <?php
 
 
-use App\Models\Video;
+use App\Models\{Video, Course};
+
+it('has course', function () {
+    // Arrange
+    $video = Video::factory()
+                  ->has(Course::factory())
+                  ->create();
+
+    // Act & Assert
+    expect($video->course)
+        ->toBeInstanceOf(Course::class);
+});
 
 it('gives back readable video duration', function () {
     // Arrange
