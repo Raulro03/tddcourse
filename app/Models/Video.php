@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use PhpParser\Node\Expr\BinaryOp\BooleanAnd;
 
 class Video extends Model
 {
@@ -19,5 +20,10 @@ class Video extends Model
     public function getReadableDuration(): string
     {
         return Str::of($this->duration_in_min)->append('min');
+    }
+
+    public function alreadyWatchedByCurrentUser(): bool
+    {
+        return (bool) auth()->user()->watchedVideos()->where('video_id', $this->id)->count();
     }
 }
