@@ -20,7 +20,7 @@ it('lists purchased courses', function () {
                     new Sequence(
                         ['title' => 'Course A'],
                         ['title' => 'Course B'],
-                    )))
+                    )), 'purchasedCourses')
                 ->create();
 
     // Act & Assert
@@ -66,7 +66,7 @@ it('shows latest purchased course first', function () {
 it('includes link to product videos', function () {
     // Arrange
     $user = User::factory()
-        ->has(Course::factory())
+        ->has(Course::factory(), 'purchasedCourses')
         ->create();
 
     // Act & Assert
