@@ -8,9 +8,7 @@
     @endforeach
 </ul>
 <img src="{{ asset("images/$course->image_name") }}" alt="Image of the course {{ $course->title }}">
-<a href="#"
-   class="paddle_button"
-   data-theme="light"
+<a href="#" class="paddle_button" data-theme="light"
    data-items='[
          {
               "priceId": "{{ $course->paddle_product_id }}",
