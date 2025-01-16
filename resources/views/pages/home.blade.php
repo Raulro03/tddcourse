@@ -7,6 +7,8 @@
     </form>
 @endguest
 @foreach($courses as $course)
-    <h2>{{ $course->title }}</h2>
+    <a href="{{ route('pages.course-details', $course) }}">
+        <h2>{{ $course->title }}</h2>
+    </a>
     <p>{{ $course->description }}</p>
 @endforeach
