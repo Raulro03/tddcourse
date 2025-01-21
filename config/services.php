@@ -33,6 +33,7 @@ return [
 
     'paddle' => [
         'vendor-id' => env('PADDLE_VENDOR_ID'),
+        'public-key' => env('PADDLE_PUBLIC_KEY'),
         'notification-endpoint-secret-key' => env('PADDLE_NOTIFICATION_ENDPOINT_SECRET_KEY'),
     ],
 
