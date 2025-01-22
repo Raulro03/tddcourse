@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Course;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -12,7 +13,7 @@ class NewPurchasedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct()
+    public function __construct(public Course $course)
     {
     }
 
