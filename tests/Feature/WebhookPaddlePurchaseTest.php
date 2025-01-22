@@ -22,6 +22,7 @@ it('can create a valid Paddle webhook signature', function () {
 
 it('stores a paddle purchase request', function () {
     // Arrange
+    Queue::fake();
     assertDatabaseCount(WebhookCall::class, 0);
     [$arrData] = getValidPaddleWebhookRequest();
 
@@ -43,7 +44,7 @@ it('does not store invalid paddle purchase request', function () {
     assertDatabaseCount(WebhookCall::class, 0);
 
     // Act
-    post('webhooks', []);
+    post('webhooks', getInvalidPaddleWebhookRequest());
 
     // Assert
     assertDatabaseCount(WebhookCall::class, 0);
@@ -69,7 +70,7 @@ it('does not dispatch a job for invalid paddle request', function () {
     Queue::fake();
 
     // Act
-    post('webhooks', []);
+    post('webhooks', getInvalidPaddleWebhookRequest());
 
     // Assert
     Queue::assertNotPushed(HandlePaddlePurchaseJob::class);
@@ -273,3 +274,7 @@ function generateValidSignedPaddleWebhookRequest(array $data, ?int $timestamp = 
     return [$data, $header];
 }
 
+function getInvalidPaddleWebhookRequest(): array
+{
+    return [];
+}
