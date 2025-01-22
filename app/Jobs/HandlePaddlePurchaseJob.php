@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
@@ -18,15 +19,22 @@ class HandlePaddlePurchaseJob extends ProcessWebhookJob implements ShouldQueue
 
     public function handle(): void
     {
-        $user = User::create([
-            'email' => $this->webhookCall->payload['email'],
-            'name' => $this->webhookCall->payload['name'],
-            'password' => bcrypt(Str::uuid()),
-        ]);
+        $user = User::where('email', $this->webhookCall->payload['email'])->first();
+
+        if (! $user) {
+            $user = User::create([
+                'email' => $this->webhookCall->payload['email'],
+                'name' => $this->webhookCall->payload['name'],
+                'password' => bcrypt(Str::uuid()),
+            ]);
+        }
 
         $course = Course::where('paddle_product_id', $this->webhookCall->payload['p_product_id'])->first();
 
         $user->purchasedCourses()->attach($course);
+
+        Mail::to($user->email)
+            ->send(new \App\Mail\NewPurchasedMail());
     }
 
 
