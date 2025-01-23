@@ -8,7 +8,7 @@ it('includes purchase details', function () {
     $course = \App\Models\Course::factory()->create();
 
     // Act
-    $mail = new NewPurchasedMail();
+    $mail = new NewPurchasedMail($course);
 
     // Assert
     $mail->AssertSeeInText("Thanks for purchasing {$course->title}");
