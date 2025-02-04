@@ -213,7 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Twitter' => App\TwitterFacade::class,
+        'Twitter' => \App\Services\TwitterFacade::class,
     ])->toArray(),
 
 ];

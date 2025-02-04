@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\TwitterClient;
+use App\Services\NullTwitter;
+use App\Services\TwitterClient;
+use App\Services\TwitterClientInterface;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class TwitterServiceProvider extends ServiceProvider
@@ -19,8 +22,12 @@ class TwitterServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind('twitter', function () {
-            return app(TwitterClient::class);
+        $this->app->bind(TwitterClientInterface::class, function (Application $app) {
+            if ($app->environment() === 'production') {
+                return app(TwitterClient::class);
+            }
+
+            return new NullTwitter();
         });
     }
 
