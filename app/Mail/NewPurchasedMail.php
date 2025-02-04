@@ -13,9 +13,7 @@ class NewPurchasedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Course $course)
-    {
-    }
+    public function __construct(public Course $course) {}
 
     public function envelope(): Envelope
     {

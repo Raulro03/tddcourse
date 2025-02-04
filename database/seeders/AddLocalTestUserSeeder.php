@@ -18,7 +18,7 @@ class AddLocalTestUserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
             ]);
 
-            $courses =  Course::all();
+            $courses = Course::all();
             $user->purchasedCourses()->attach($courses);
         }
     }

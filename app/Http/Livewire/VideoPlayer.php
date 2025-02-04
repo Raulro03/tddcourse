@@ -8,6 +8,7 @@ use Livewire\Component;
 class VideoPlayer extends Component
 {
     public $video;
+
     public $courseVideos;
 
     public function mount()

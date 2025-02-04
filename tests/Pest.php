@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
+
 use function Pest\Laravel\actingAs;
 
 /*
@@ -29,7 +30,7 @@ uses(TestCase::class, LazilyRefreshDatabase::class)->in('Feature');
 |
 */
 
-function loginAsUser(User $user = null)
+function loginAsUser(?User $user = null)
 {
     $user = $user ?? User::factory()->create();
 

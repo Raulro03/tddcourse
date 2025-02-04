@@ -1,10 +1,10 @@
 <?php
 
-
 use App\Jobs\HandlePaddlePurchaseJob;
 use App\Mail\NewPurchasedMail;
 use App\Models\PurchasedCourse;
 use App\Models\User;
+
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -16,7 +16,7 @@ beforeEach(function () {
             'email' => 'test@test.es',
             'name' => 'Test User',
             'p_product_id' => 'pro_01j449j1rwpm6e7y7ts4mp2wn4',
-        ]
+        ],
     ]);
 });
 
@@ -77,7 +77,6 @@ it('sends a user email', function () {
     \App\Models\Course::factory()->create([
         'paddle_product_id' => 'pro_01j449j1rwpm6e7y7ts4mp2wn4',
     ]);
-
 
     // Act
     (new HandlePaddlePurchaseJob($this->dummyWebhookCall))->handle();

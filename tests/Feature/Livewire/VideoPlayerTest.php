@@ -1,17 +1,14 @@
 <?php
 
-
 use App\Http\Livewire\VideoPlayer;
 use App\Models\Course;
-use App\Models\User;
 use App\Models\Video;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 
 function createCourseAndVideos(int $videosCount = 1): Course
 {
     return Course::factory()
-                 ->has(Video::factory()->count($videosCount))
-                 ->create();
+        ->has(Video::factory()->count($videosCount))
+        ->create();
 }
 
 beforeEach(function () {
@@ -28,7 +25,7 @@ it('shows details for given video', function () {
         ->assertSeeText([
             $video->title,
             $video->description,
-            "({$video->duration_in_min}min)"
+            "({$video->duration_in_min}min)",
         ]);
 
 });
@@ -40,7 +37,7 @@ it('shows given video', function () {
     // Act & Assert
     $video = $course->videos->first();
     Livewire::test(VideoPlayer::class, ['video' => $video])
-        ->assertSeeHtml('<iframe src="https://player.vimeo.com/video/' . $video->vimeo_id . '"');
+        ->assertSeeHtml('<iframe src="https://player.vimeo.com/video/'.$video->vimeo_id.'"');
 
 });
 
@@ -52,8 +49,8 @@ it('shows list of all course videos', function () {
     Livewire::test(VideoPlayer::class, ['video' => $course->videos()->first()])
         ->assertSee($course->videos->pluck('title')->toArray())
         ->assertSeeHtml([
-            route('pages.course-videos',[$course, $course->videos[1]]),
-            route('pages.course-videos',[$course, $course->videos[2]]),
+            route('pages.course-videos', [$course, $course->videos[1]]),
+            route('pages.course-videos', [$course, $course->videos[2]]),
         ]);
 });
 

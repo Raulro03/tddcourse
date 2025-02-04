@@ -36,6 +36,4 @@ class HandlePaddlePurchaseJob extends ProcessWebhookJob implements ShouldQueue
         Mail::to($user->email)
             ->send(new \App\Mail\NewPurchasedMail($course));
     }
-
-
 }

@@ -1,13 +1,14 @@
 <?php
 
-
-use App\Models\{User, Video, Course};
+use App\Models\Course;
+use App\Models\User;
+use App\Models\Video;
 
 it('has course', function () {
     // Arrange
     $video = Video::factory()
-                  ->has(Course::factory())
-                  ->create();
+        ->has(Course::factory())
+        ->create();
 
     // Act & Assert
     expect($video->course)

@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Course;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
 class VideoFactory extends Factory
 {

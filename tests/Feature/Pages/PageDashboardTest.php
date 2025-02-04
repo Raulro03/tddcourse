@@ -16,12 +16,12 @@ it('cannot be accessed by guest', function () {
 it('lists purchased courses', function () {
     // Arrange
     $user = User::factory()
-                ->has(Course::factory()->count(2)->state(
-                    new Sequence(
-                        ['title' => 'Course A'],
-                        ['title' => 'Course B'],
-                    )), 'purchasedCourses')
-                ->create();
+        ->has(Course::factory()->count(2)->state(
+            new Sequence(
+                ['title' => 'Course A'],
+                ['title' => 'Course B'],
+            )), 'purchasedCourses')
+        ->create();
 
     // Act & Assert
     loginAsUser($user);

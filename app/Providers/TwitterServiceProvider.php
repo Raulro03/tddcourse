@@ -27,11 +27,9 @@ class TwitterServiceProvider extends ServiceProvider
                 return app(TwitterClient::class);
             }
 
-            return new NullTwitter();
+            return new NullTwitter;
         });
     }
 
-    public function boot(): void
-    {
-    }
+    public function boot(): void {}
 }

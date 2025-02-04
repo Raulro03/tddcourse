@@ -33,9 +33,9 @@ it('shows course details', function () {
 it('shows course video count', function () {
     // Arrange
     $course = Course::factory()
-                    ->released()
-                    ->has(Video::factory()->count(3))
-                    ->create();
+        ->released()
+        ->has(Video::factory()->count(3))
+        ->create();
 
     // Act & Assert
     get(route('pages.course-details', $course))
@@ -47,10 +47,10 @@ it('includes paddle checkout button', function () {
     // Arrange
     config()->set('services.paddle.vendor-id', 'vendor-id');
     $course = Course::factory()
-                    ->released()
-                    ->create([
-                        'paddle_product_id' => 'pri_01j449tat6p71xg1yx22pwnrjt',
-                    ]);
+        ->released()
+        ->create([
+            'paddle_product_id' => 'pri_01j449tat6p71xg1yx22pwnrjt',
+        ]);
 
     // Act & Assert
     get(route('pages.course-details', $course))

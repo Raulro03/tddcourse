@@ -2,8 +2,8 @@
 
 use App\Http\Livewire\VideoPlayer;
 use App\Models\Course;
-
 use App\Models\Video;
+
 use function Pest\Laravel\get;
 
 it('cannot be accessed by guest', function () {
@@ -19,8 +19,8 @@ it('cannot be accessed by guest', function () {
 it('includes a video player', function () {
     // Arrange
     $course = Course::factory()
-                    ->has(Video::factory())
-                    ->create();
+        ->has(Video::factory())
+        ->create();
 
     // Act & Assert
     loginAsUser();
@@ -60,7 +60,7 @@ it('shows provided course video', function () {
     loginAsUser();
     get(route('pages.course-videos', [
         'course' => $course,
-        'video' => $course->videos->last()
+        'video' => $course->videos->last(),
     ]))
         ->assertOk()
         ->assertSeeText('Second Video');

@@ -24,7 +24,7 @@ class AddGivenCoursesSeeder extends Seeder
             'learnings' => [
                 'How to start with Laravel',
                 'Where to start with Laravel',
-                'Build your first Laravel application'
+                'Build your first Laravel application',
             ],
             'released_at' => now(),
         ]);

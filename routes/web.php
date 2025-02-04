@@ -25,7 +25,7 @@ Route::get('courses/{course:slug}', PageCourseDetailsController::class)
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
     Route::get('/dashboard', PageDashboardController::class)->name('pages.dashboard');
     Route::get('videos/{course:slug}/{video:slug?}', PageVideosController::class)
