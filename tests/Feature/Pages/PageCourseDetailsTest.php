@@ -57,5 +57,5 @@ it('includes paddle checkout button', function () {
         ->assertOk()
         ->assertSee('<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>', false)
         ->assertSee('Paddle.Initialize({ token: "vendor-id" });', false)
-        ->assertSee('<a href="#" class="paddle_button" data-theme="light"', false);
+        ->assertSee('<a href="#" data-theme="light" class="paddle_button mt-8 inline-flex items-center rounded-md border border-transparent bg-yellow-400 py-3 px-6 text-base font-medium text-gray-900 shadow hover:text-red-500"', false);
 });

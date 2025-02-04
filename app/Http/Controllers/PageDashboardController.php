@@ -8,6 +8,6 @@ class PageDashboardController extends Controller
     {
         $purchasedCourses = auth()->user()->purchasedCourses;
 
-        return view('dashboard', compact('purchasedCourses'));
+        return view('pages.dashboard', compact('purchasedCourses'));
     }
 }

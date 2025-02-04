@@ -20,7 +20,7 @@ class AddGivenCoursesSeeder extends Seeder
             'title' => 'Laravel For Beginners',
             'tagline' => 'Make your first steps as a Laravel developer',
             'description' => 'A video course to teach you Laravel from scratch',
-            'image_name' => 'laravel_for_beginners.jpg',
+            'image_name' => 'laravel_for_beginners.png',
             'learnings' => [
                 'How to start with Laravel',
                 'Where to start with Laravel',
@@ -35,7 +35,7 @@ class AddGivenCoursesSeeder extends Seeder
             'title' => 'Advanced Laravel',
             'tagline' => 'Level up as a Laravel developer',
             'description' => 'A video course to teach you advanced techniques in Laravel',
-            'image_name' => 'advanced_laravel.jpg',
+            'image_name' => 'advanced_laravel.png',
             'learnings' => [
                 'How to use the service container',
                 'Pipelines in Laravel',
@@ -50,7 +50,7 @@ class AddGivenCoursesSeeder extends Seeder
             'title' => 'TDD The Laravel Way',
             'tagline' => 'Learn TDD with Laravel',
             'description' => 'A video course to teach you TDD with Laravel',
-            'image_name' => 'tdd_laravel.jpg',
+            'image_name' => 'tdd_the_laravel_way.png',
             'learnings' => [
                 'How to use PEST',
                 'Test pages in Laravel',
