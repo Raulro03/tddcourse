@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\Services\NullTwitter;
+use App\Services\NullTwitterClient;
 use App\Services\TwitterClient;
 use App\Services\TwitterClientInterface;
 use Illuminate\Foundation\Application;
@@ -27,7 +27,7 @@ class TwitterServiceProvider extends ServiceProvider
                 return app(TwitterClient::class);
             }
 
-            return new NullTwitter;
+            return new NullTwitterClient;
         });
     }
 
