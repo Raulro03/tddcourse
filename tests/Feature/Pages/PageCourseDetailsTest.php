@@ -59,3 +59,30 @@ it('includes paddle checkout button', function () {
         ->assertSee('Paddle.Initialize({ token: "vendor-id" });', false)
         ->assertSee('<a href="#" data-theme="light" class="paddle_button mt-8 inline-flex items-center rounded-md border border-transparent bg-yellow-400 py-3 px-6 text-base font-medium text-gray-900 shadow hover:text-red-500"', false);
 });
+
+it('includes a title', function () {
+    // Arrange
+    $course = Course::factory()->released()->create();
+    $expectedTitle = config('app.name') . ' - ' . $course->title;
+
+    // Act & Assert
+    get(route('pages.course-details', $course))
+        ->assertOk()
+        ->assertSee("<title>$expectedTitle</title>", false);
+});
+
+it('includes social tags', function () {
+    // Act & Assert
+    $course = Course::factory()->released()->create();
+    get(route('pages.course-details', $course))
+        ->assertOk()
+        ->assertSee([
+            '<meta name="description" content="' . $course->description . '">',
+            '<meta property="og:type" content="website">',
+            '<meta property="og:url" content="' . route('pages.course-details', $course) . '">',
+            '<meta property="og:title" content="' . $course->title . '">',
+            '<meta property="og:description" content="' . $course->description . '">',
+            '<meta property="og:image" content="' . asset("images/{$course->image_name}") . '">',
+            '<meta name="twitter:card" content="summary_large_image">',
+        ], false);
+});

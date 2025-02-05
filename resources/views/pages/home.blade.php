@@ -1,13 +1,13 @@
 <x-guest-layout :page-title="config('app.name') . ' - Home'">
 
     @push('social-meta')
-        <meta name="description" content="TDDCourse is the leading learning platform for Laravel developers.">
+        <meta name="description" content="TDDCourseIES is the leading learning platform for Laravel developers">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ route('pages.home') }}">
-        <meta property="og:title" content="TDDCourse">
-        <meta property="og:description" content="TDDCourse is the leading learning platform for Laravel developers.">
+        <meta property="og:title" content="TDDCourseIES">
+        <meta property="og:description" content="TDDCourseIES is the leading learning platform for Laravel developers">
         <meta property="og:image" content="{{ asset('images/social.png') }}">
 
         <!-- Twitter -->
