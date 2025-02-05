@@ -61,8 +61,8 @@ it('includes logout if logged in', function () {
     loginAsUser();
     get(route('pages.home'))
         ->assertOk()
-        ->assertSeeText('Log out')
-        ->assertSee(route('logout'));
+        ->assertSeeText('Dashboard')
+        ->assertSee(route('pages.dashboard'));
 
 });
 
