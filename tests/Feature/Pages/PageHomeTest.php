@@ -3,6 +3,7 @@
 use App\Models\Course;
 use Illuminate\Support\Carbon;
 
+use Juampi92\TestSEO\TestSEO;
 use function Pest\Laravel\get;
 
 it('shows courses overview', function () {
@@ -86,23 +87,29 @@ it('includes title', function () {
     // Arrange
     $expectedTitle = config('app.name') . ' - Home';
 
-    // Act & Assert
-    get(route('pages.home'))
-        ->assertOk()
-        ->assertSee("<title>$expectedTitle</title>", false);
+    // Act
+    $response = get(route('pages.home'))
+        ->assertOk();
+
+    // Assert
+    $seo = new TestSEO($response->getContent());
+    expect($seo->data)
+        ->title()->toBe($expectedTitle);
 });
 
 it('includes social tags', function () {
-    // Act & Assert
-    get(route('pages.home'))
-        ->assertOk()
-        ->assertSee([
-            '<meta name="description" content="TDDCourseIES is the leading learning platform for Laravel developers">',
-            '<meta property="og:type" content="website">',
-            '<meta property="og:url" content="' . route('pages.home') . '">',
-            '<meta property="og:title" content="TDDCourseIES">',
-            '<meta property="og:description" content="TDDCourseIES is the leading learning platform for Laravel developers">',
-            '<meta property="og:image" content="' . asset('images/social.png') . '">',
-            '<meta name="twitter:card" content="summary_large_image">',
-        ], false);
+    // Act
+    $response = get(route('pages.home'))
+        ->assertOk();
+
+    // Assert
+    $seo = new TestSEO($response->getContent());
+    expect($seo->data)
+        ->description()->toBe('TDDCourseIES is the leading learning platform for Laravel developers')
+        ->openGraph()->type()->toBe('website')
+        ->openGraph()->url()->toBe(route('pages.home'))
+        ->openGraph()->title()->toBe('TDDCourseIES')
+        ->openGraph()->description()->toBe('TDDCourseIES is the leading learning platform for Laravel developers')
+        ->openGraph()->image()->toBe(asset('images/social.png'))
+        ->twitter()->card->toBe('summary_large_image');
 });
