@@ -44,3 +44,9 @@ it('gives successful response for videos page', function () {
     get(route('pages.course-videos', $course))
         ->assertOk();
 });
+
+it('is a todo', function () {
+    // Arrange
+
+    // Act & Assert
+})->todo();
